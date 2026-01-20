@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Camera, Zap, Shield, EyeOff, HelpCircle } from "lucide-react";
-import fetchInstaReel from "../../InstaApi";
+import instaApi from "../../instaApi.js";
 
 const InstagramReel = () => {
   const [url, setUrl] = useState("");
@@ -21,7 +21,7 @@ const InstagramReel = () => {
     }
 
     try {
-      const response = await fetchInstaReel(url);
+      const response = await instaApi(url);
       const reel =
         response?.media?.[0]?.url || response?.url || response?.video_url;
       if (!reel) throw new Error("No downloadable reel found.");
